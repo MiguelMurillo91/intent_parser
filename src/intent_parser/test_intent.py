@@ -1,4 +1,4 @@
-from intent import normalize_room
+from intent_parser.intent import normalize_room
 
 
 def test_nomalizes_spaced_and_case():
