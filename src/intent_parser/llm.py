@@ -2,6 +2,7 @@ from typing import Protocol
 
 
 class LLMClient(Protocol):
+    """Anything that can turn a prompt into a text response."""
     def complete(self, prompt: str) -> str: ...
 
 
@@ -15,10 +16,3 @@ class FakeLLM:
     def complete(self, prompt: str) -> str:
         self.calls.append(prompt)
         return self._response
-
-
-def _check(client: LLMClient) -> str:
-    return client.complete("hi")
-
-
-_check(FakeLLM("ok"))
