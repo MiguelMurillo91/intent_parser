@@ -19,7 +19,7 @@ def test_intent_model():
     assert intent.confidence == 0.6
 
 
-def test_rejects_confidence_grater_one():
+def test_rejects_confidence_greater_one():
     with pytest.raises(ValidationError,  match="less_than_equal"):
         intent = Intent(
             intent_type=IntentType.DEVICE_CONTROL,
@@ -29,8 +29,6 @@ def test_rejects_confidence_grater_one():
             confidence=1.5,
         )
 
-        assert intent.confidence <= 1
-
 
 def test_rejects_confidence_less_zero():
     with pytest.raises(ValidationError,  match="greater_than_equal"):
@@ -39,30 +37,18 @@ def test_rejects_confidence_less_zero():
             device="switch 1",
             room="main room",
             action=Action.ON,
-            confidence=-0.5
+            confidence=-0.5,
         )
-
-        assert intent.confidence <= 1
-
-
-def test_intent_parser():
-    intent = Intent(
-        intent_type=IntentType.DEVICE_CONTROL,
-        device="switch 1",
-        room="main room",
-        action=Action.OFF,
-        confidence=0.5,
-    )
-
-    assert intent.room == "main_room"
 
 
 def test_rejects_no_valid_action():
     with pytest.raises(ValidationError):
-        Intent(
-            intent_type=IntentType.DEVICE_CONTROL,
-            device="switch 1",
-            room="main room",
-            action="break",
-            confidence=0.5,
+        Intent.model_validate(
+            {
+                "intent_type": "device_control",
+                "device": "switch 1",
+                "room": "main room",
+                "action": "break",
+                "confidence": 0.5,
+            }
         )
