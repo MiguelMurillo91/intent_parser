@@ -1,6 +1,7 @@
 import pytest
-from intent_parser.models import Intent, IntentType, Action
 from pydantic import ValidationError
+
+from intent_parser.models import Action, Intent, IntentType
 
 
 def test_intent_model():
@@ -20,8 +21,8 @@ def test_intent_model():
 
 
 def test_rejects_confidence_greater_one():
-    with pytest.raises(ValidationError,  match="less_than_equal"):
-        intent = Intent(
+    with pytest.raises(ValidationError, match="less_than_equal"):
+        Intent(
             intent_type=IntentType.DEVICE_CONTROL,
             device="switch 1",
             room="main room",
@@ -31,8 +32,8 @@ def test_rejects_confidence_greater_one():
 
 
 def test_rejects_confidence_less_zero():
-    with pytest.raises(ValidationError,  match="greater_than_equal"):
-        intent = Intent(
+    with pytest.raises(ValidationError, match="greater_than_equal"):
+        Intent(
             intent_type=IntentType.DEVICE_CONTROL,
             device="switch 1",
             room="main room",

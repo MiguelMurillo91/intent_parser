@@ -1,5 +1,7 @@
 from enum import StrEnum
+
 from pydantic import BaseModel, Field, field_validator
+
 from intent_parser.intent import normalize_room
 
 

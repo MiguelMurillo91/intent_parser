@@ -3,6 +3,7 @@ from typing import Protocol
 
 class LLMClient(Protocol):
     """Anything that can turn a prompt into a text response."""
+
     def complete(self, prompt: str) -> str: ...
 
 
