@@ -29,17 +29,17 @@ def test_parses_valid_response():
 
 def test_invalid_answer():
     intent = parse_intent("turn off switch 2", FakeLLM(INVALID_ANSWER))
-    assert intent == None
+    assert intent is None
 
 
 def test_invalid_value_confidence():
     intent = parse_intent("turn off switch 3", FakeLLM(INVALID_VALUE_CONFIDENCE))
-    assert intent == None
+    assert intent is None
 
 
 def test_missing_values():
     intent = parse_intent("turn off switch 3", FakeLLM(INVALID_MISSING_VALUES))
-    assert intent == None
+    assert intent is None
 
 
 def test_prompt_contains_user_text():
