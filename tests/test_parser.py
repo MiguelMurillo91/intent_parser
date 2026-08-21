@@ -7,7 +7,7 @@ VALID_JSON = (
     '"room": "Main Room", "action": "off", "confidence": 0.94}'
 )
 
-INVALID_ANSWER = '{"Sure, here is your answer:"}'
+INVALID_ANSWER = "Sure! Here's your answer: turn off switch 1."
 
 INVALID_VALUE_CONFIDENCE = (
     '{"intent_type": "device_control", "device": "switch 1", '
