@@ -37,3 +37,6 @@ addopts = "-m 'not integration' --strict-markers"
 [tool.pyright]
 include = ["src", "tests"]
 typeCheckingMode = "standard"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
